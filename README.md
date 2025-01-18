@@ -1,11 +1,17 @@
-# PWA Blocker
+# HTML Snipper
 
-Websites are now offering PWAs. Not every organization wants to allow the installation. 
-This extension on load creates and observer to remove the manifest responsible for PWAs and the offer to install. 
+There are use cases for an admin to remove offered elements on a websites. Some
+elements offer end users pathways which admin policy bans. This extension allows
+an admin to configure html query targets and removal or such targets.
 
-Managed Extenstion use allows the escaping of urls added to the admin console extension JSON as an array of domains.
+Sample Admin JSON policies.
 ```
-{ "escape" : {"Value" : ["domain.com", "example.com"]}}
+{"config": {"Value": [{"url": "https://www.example.com", "continual": true, "html": [".example-class"]}]}}
+```
+
+Admin policy with RegEx site gating.
+```
+{"config": {"Value": [{"re": "[https|http]:\/\/[a-zA-Z]{3}.example.com", "continual": true, "html": [".example-class"]}]}}
 ```
 
 

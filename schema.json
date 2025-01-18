@@ -18,7 +18,10 @@
             "type": "boolean"
           },
           "html": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
