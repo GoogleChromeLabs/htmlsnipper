@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var siteConfig = {}
+var siteConfig = {};
 const predicate = (configItem, url) => {
   if (configItem.re) {
     const re = new RegExp(configItem.re);
@@ -23,7 +23,7 @@ const predicate = (configItem, url) => {
 }
 
 const isEmpty = (obj) => {
-  if (!obj) return false
+  if (!obj) return false;
   for (const prop in obj) {
     if (Object.hasOwn(obj, prop)) {
       return false;
@@ -34,35 +34,38 @@ const isEmpty = (obj) => {
 
 try {
   chrome.storage.managed.get('config', function (data) {
-    let config = []
+    let config = [];
     if (typeof data['config'] == 'string' && data['config'].includes('[') && data['config'].includes(']')) {
-      config = JSON.parse(data['config'])
+      config = JSON.parse(data['config']);
     } else if (Array.isArray(data['config'])) {
-      config = data['config']
+      config = data['config'];
     }
     else {
-      config.push(data['config'])
+      config.push(data['config']);
     }
 
-    const currentUrl = window.location.href
+    const currentUrl = window.location.href;
     siteConfig = config.find(e => predicate(e, currentUrl));
-    console.log('siteConfig', siteConfig)
+    console.log('siteConfig', siteConfig);
   })
 } catch (e) {
-  console.log(e)
+  console.log(e);
 }
 
 
 const observer = new MutationObserver(function () {
-  if (isEmpty(siteConfig)) return;
+  if (isEmpty(siteConfig)) {
+    observer.disconnect();
+    return;
+  };
   siteConfig.html.forEach(html => {
     const items = document.querySelectorAll(html)
     if (items) {
       items.forEach(item => {
-        item.remove()
+        item.remove();
       })
       if (!siteConfig.continual) {
-        observer.disconnect()
+        observer.disconnect();
       }
     }
   })
