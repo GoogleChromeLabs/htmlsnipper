@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "HTML Snipper",
+  "short_name": "HTML Snipper",
+  "description": "HTML Snipper - Configure and cut out HTML elements on a site.",
+  "version": "0.0.2",
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": [
+        "https://*/*"
+      ],
+      "js": [
+        "contentscript.js"
+      ]
+    }
+  ],
+  "storage": {
+    "managed_schema": "schema.json"
+  },
+  "icons": {
+    "16": "assets/html_snipper16.png",
+    "26": "assets/html_snipper26.png",
+    "32": "assets/html_snipper32.png",
+    "36": "assets/html_snipper36.png",
+    "64": "assets/html_snipper64.png",
+    "128": "assets/html_snipper128.png"
+  }
+}
