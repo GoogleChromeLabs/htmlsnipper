@@ -44,7 +44,7 @@ try {
       config.push(data['config']);
     }
 
-    const currentUrl = window.location.href;
+    const currentUrl = window.location.origin;
     siteConfig = config.find(e => predicate(e, currentUrl));
     console.log('siteConfig', siteConfig);
   })
